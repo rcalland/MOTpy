@@ -10,7 +10,7 @@ import numpy as np
 from collections import namedtuple
 from ast import literal_eval
 from itertools import chain, groupby
-from natsort import natsorted, ns
+#from natsort import natsorted, ns
 
 from PIL import Image
 from chainercv.transforms import resize
@@ -81,10 +81,9 @@ class MOT:
 		Load images from image folder
 		"""
 
-		"""img_wildcard = os.path.join(self.image_path, "*{}".format(self.seqinfo["imExt"]))
-		self.img_files = glob.glob(img_wildcard)
-		self.img_files = natsorted(self.img_files, alg=ns.IGNORECASE)
-		"""
+		#img_wildcard = os.path.join(self.image_path, "*{}".format(self.seqinfo["imExt"]))
+		#self.img_files = sorted(glob.glob(img_wildcard))
+		
 		self.img_files = []
 		for i in range(1, self.seqinfo["seqLength"] +1):
 			num = "{}".format(i).zfill(6)
@@ -202,11 +201,6 @@ def open_frame(data, frame):
 
 if __name__=="__main__":
 	data = MOT("/mnt/sakuradata3/datasets/MOT/MOT16/", sequence="MOT16-04", train=True)
-	data.load_bboxes()
-	exit()
-
-	#data.load_images()
-	#data.load_gt()
 
 	for i in range(100):
 		open_frame(data, i)
